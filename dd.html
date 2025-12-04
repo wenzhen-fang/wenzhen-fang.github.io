@@ -81,17 +81,24 @@
   </div>
 
   <script>
-    // 防止某些預覽器把文件當作模組 / TSX 而出錯：這裡只放非常簡單的原生 JS
     (function(){
-      // 確保頁面載入後不會有未關閉的標籤或語法錯誤
-      var el = document.getElementById('questionInput');
-      if(!el) return;
-      // 簡單的本地輸入回饋（不會拋出錯誤）
-      el.addEventListener('input', function(e){
-        alert('你問了：'+ e.target.value); // 示範：按按鈕後跳出訊息，保留以示範輸入事件
+      var inputEl = document.getElementById('questionInput');
+      var btn = document.getElementById('askBtn');
+      if(!inputEl || !btn) return;
+
+      // 清除先前錯誤的 alert 綁定
+      inputEl.replaceWith(inputEl.cloneNode(true));
+      inputEl = document.getElementById('questionInput');
+
+      // 按鈕點擊才觸發
+      btn.addEventListener('click', function(){
+        var q = inputEl.value.trim();
+        if(!q){ alert('請先輸入問題'); return; }
+        alert('你問了：' + q);
       });
     })();
   </script>
 </body>
 </html>
+
 
