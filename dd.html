@@ -56,7 +56,7 @@
     .note{margin-top:12px;font-size:12px;color:#64748b}
   .ask-btn{
       padding: 12px 18px;
-      background:#090a3d;
+      background:#6366f1;
       color:white;
       border:none;
       border-radius:10px;
@@ -65,19 +65,35 @@
       transition:background .15s;
     }
     .ask-btn:hover{background:#4f46e5;}
+    .answer-card{
+      margin-top:20px;
+      padding:20px;
+      border-radius:14px;
+      background:#f1f5f9;
+      border:1px solid #e2e8f0;
+      font-size:16px;
+      color:#0f172a;
+      box-shadow:0 4px 12px rgba(0,0,0,0.06);
+      transition:0.25s;
+    }
+    .answer-card.show{background:#eef2ff; border-color:#c7d2fe;}
     </style>
 </head>
 <body>
   <div class="container">
     <h1>想問什麼問題?</h1>
-    <p class="hint">在下面的輸入框鍵入你的問題</p>
+    <p class="hint">在下面的輸入框鍵入你的問題（目前只有輸入框，下一步可加入按鈕與隨機回覆功能）</p>
 
     <div class="input-row">
       <input id="questionInput" type="text" placeholder="在這裡輸入你的問題" aria-label="問題輸入框" />
       <button id="askBtn" class="ask-btn" aria-label="送出問題">問它！</button>
     </div>
 
-    <p class="note">提示：按 Enter 不會送出。</p>
+    <p class="note">提示：輸入問題並按「問它！」會在下方顯示回答。</p>
+
+    <div id="answerCard" class="answer-card" style="display:none">
+      <div id="answerText"></div>
+    </div>
   </div>
 
   <script>
@@ -95,7 +111,6 @@
         var q = inputEl.value.trim();
         if(!q){ alert('請先輸入問題'); return; }
 
-        // 隨機答案庫
         var answers = [
           '是的。',
           '不可能。',
@@ -110,7 +125,12 @@
         ];
 
         var r = Math.floor(Math.random() * answers.length);
-        alert('你的問題：'+ q + '\n回答：' + answers[r]);
+
+        var card = document.getElementById('answerCard');
+        var text = document.getElementById('answerText');
+        text.innerHTML = '<strong>你的問題：</strong> ' + q + '<br><br>' + '<strong>回答：</strong> ' + answers[r];
+        card.style.display = 'block';
+        card.classList.add('show');
       });
     })();
   </script>
