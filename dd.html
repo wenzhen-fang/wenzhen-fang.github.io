@@ -112,48 +112,50 @@
     </div>
   </div>
 
-  <script>
-    (function(){
-      var inputEl = document.getElementById('questionInput');
-      var btn = document.getElementById('askBtn');
-      if(!inputEl || !btn) return;
+ <script>
+(function(){
+  var inputEl = document.getElementById('questionInput');
+  var btn = document.getElementById('askBtn');
+  if(!inputEl || !btn) return;
 
-      // 清除先前錯誤的 alert 綁定
-      inputEl.replaceWith(inputEl.cloneNode(true));
-      inputEl = document.getElementById('questionInput');
+  // 按鈕點擊觸發
+  btn.addEventListener('click', function(){
+    var q = inputEl.value.trim();
+    if(!q){ alert('請先輸入問題'); return; }
 
-      // 按鈕點擊才觸發
-      btn.addEventListener('click', function(){
-        var q = inputEl.value.trim();
-        if(!q){ alert('請先輸入問題'); return; }
+    var answers = [
+      '是的。',
+      '不可能。',
+      '再想想看。',
+      '目前看起來很有機會。',
+      '時機尚未成熟。',
+      '相信你的直覺。',
+      '答案就在你心中。',
+      '你需要更多資訊。',
+      '保持耐心。',
+      '結果會超出你的預期。'
+    ];
 
-        var answers = [
-          '是的。',
-          '不可能。',
-          '再想想看。',
-          '目前看起來很有機會。',
-          '時機尚未成熟。',
-          '相信你的直覺。',
-          '答案就在你心中。',
-          '你需要更多資訊。',
-          '保持耐心。',
-          '結果會超出你的預期。'
-        ];
+    var r = Math.floor(Math.random() * answers.length);
 
-        var r = Math.floor(Math.random() * answers.length);
+    var card = document.getElementById('answerCard');
+    var text = document.getElementById('answerText');
 
-        var card = document.getElementById('answerCard');
-        var text = document.getElementById('answerText');
-        text.innerHTML = '<strong>你的問題：</strong> ' + q + '<br><br>' + '<strong>回答：</strong> ' + answers[r];
-        card.style.display = 'block';
-        card.classList.add('show');
-      });
+    text.innerHTML =
+      '<strong>你的問題：</strong> ' + q +
+      '<br><br><strong>回答：</strong> ' + answers[r];
 
-      // 再問一次
-      document.getElementById('againBtn').addEventListener('click', function(){
-        btn.click();
-    })();
-  </script>
+    card.style.display = 'block';
+    card.classList.add('show');
+  });
+
+  // 再問一次
+  document.getElementById('againBtn').addEventListener('click', function(){
+    btn.click();
+  });
+
+})();
+</script>
 </body>
 </html>
 
