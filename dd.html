@@ -77,20 +77,6 @@
       transition:0.25s;
     }
     .answer-card.show{background:#eef2ff; border-color:#c7d2fe;}
-    .again-btn{
-      margin-top:16px;
-      padding:10px 16px;
-      background:#94a3b8;
-      color:white;
-      border:none;
-      border-radius:8px;
-      font-size:14px;
-      cursor:pointer;
-      transition:background .15s;
-    }
-    .again-btn:hover{background:#64748b;}
-    .answer-card{opacity:0; transform:translateY(10px);}
-    .answer-card.show{opacity:1; transform:translateY(0);} 
     </style>
 </head>
 <body>
@@ -107,8 +93,6 @@
 
     <div id="answerCard" class="answer-card" style="display:none">
       <div id="answerText"></div>
-      <button id="againBtn" class="again-btn">再問一次</button>
-    </div>
     </div>
   </div>
 
@@ -147,12 +131,6 @@
         text.innerHTML = '<strong>你的問題：</strong> ' + q + '<br><br>' + '<strong>回答：</strong> ' + answers[r];
         card.style.display = 'block';
         card.classList.add('show');
-      });
-
-      // 再問一次
-      document.getElementById('againBtn').addEventListener('click', function(){
-        btn.click();
-      });('show');
       });
     })();
   </script>
