@@ -94,11 +94,25 @@
       btn.addEventListener('click', function(){
         var q = inputEl.value.trim();
         if(!q){ alert('請先輸入問題'); return; }
-        alert('你問了：' + q);
+
+        // 隨機答案庫
+        var answers = [
+          '是的。',
+          '不可能。',
+          '再想想看。',
+          '目前看起來很有機會。',
+          '時機尚未成熟。',
+          '相信你的直覺。',
+          '答案就在你心中。',
+          '你需要更多資訊。',
+          '保持耐心。',
+          '結果會超出你的預期。'
+        ];
+
+        var r = Math.floor(Math.random() * answers.length);
+        alert('你的問題：'+ q + '\n回答：' + answers[r]);
       });
     })();
   </script>
 </body>
 </html>
-
-
