@@ -114,6 +114,9 @@
 
  <script>
 (function(){
+  var repeatCount = 0;         // 再問一次 次數累計
+  var maxRepeat = 5;           // 你想設定的次數上限（可改）
+  var lastQuestion = "";       // 記錄上一個問題
   var inputEl = document.getElementById('questionInput');
   var btn = document.getElementById('askBtn');
   if(!inputEl || !btn) return;
@@ -121,17 +124,25 @@
   // 按鈕點擊觸發
   btn.addEventListener('click', function(){
     var q = inputEl.value.trim();
+    if(q !== lastQuestion){
+      repeatCount = 0;       // 換題 → 重置次數
+      lastQuestion = q;      // 更新記錄
+    }
     if(!q){ alert('請先輸入問題'); return; }
 
     var answers = [
       '是的。',
       '不可能。',
+      '或許不是好的選擇。',
       '再想想看。',
       '目前看起來很有機會。',
       '時機尚未成熟。',
       '相信你的直覺。',
-      '答案就在你心中。',
+      '活在當下。',
+      '這我無法確定。',
+      '未來操之在你。',
       '你需要更多資訊。',
+      '一切將會變得更好。',
       '保持耐心。',
       '結果會超出你的預期。'
     ];
@@ -151,9 +162,24 @@
 
   // 再問一次
   document.getElementById('againBtn').addEventListener('click', function(){
-    btn.click();
+  
+    repeatCount++;
+  
+    if(repeatCount >= maxRepeat){
+      var card = document.getElementById('answerCard');
+      var text = document.getElementById('answerText');
+  
+      text.innerHTML =
+        '<strong>你問太多次了 😅</strong><br><br>' +
+        '或許該換個問題了？';
+  
+      card.style.display = 'block';
+      card.classList.add('show');
+      return;
+    }
+  
+    btn.click(); // 還沒達上限 → 正常再問一次
   });
-
 })();
 </script>
 </body>
