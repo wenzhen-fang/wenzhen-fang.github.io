@@ -124,11 +124,11 @@
   // 按鈕點擊觸發
   btn.addEventListener('click', function(){
     var q = inputEl.value.trim();
-    if(!q){ alert('請先輸入問題'); return; }
-    if(q === lastQuestion){
-        alert("你還沒改問題喔！");
+    if (q === lastQuestion && repeatCount >= maxRepeat) {
+        alert("你還沒改問題喔！而且你已經問太多次啦！");
         return;
     }
+    if(!q){ alert('請先輸入問題'); return; }
     if(q !== lastQuestion){
       repeatCount = 0;       // 換題 → 重置次數
       lastQuestion = q;      // 更新記錄
