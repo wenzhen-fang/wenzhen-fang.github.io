@@ -80,15 +80,15 @@
     .again-btn{
       margin-top:16px;
       padding:10px 16px;
-      background:#172436;
+      background:#6366f1;
       color:white;
       border:none;
-      border-radius:8px;
-      font-size:14px;
+      border-radius:10px;
+      font-size:15px;
       cursor:pointer;
       transition:background .15s;
     }
-    .again-btn:hover{background:#64748b;}
+    .again-btn:hover{background:#4f46e5;}
     .answer-card{opacity:0; transform:translateY(10px);}
     .answer-card.show{opacity:1; transform:translateY(0);} 
     </style>
@@ -112,50 +112,49 @@
     </div>
   </div>
 
- <script>
-(function(){
-  var inputEl = document.getElementById('questionInput');
-  var btn = document.getElementById('askBtn');
-  if(!inputEl || !btn) return;
+  <script>
+    (function(){
+      var inputEl = document.getElementById('questionInput');
+      var btn = document.getElementById('askBtn');
+      if(!inputEl || !btn) return;
 
-  // 按鈕點擊觸發
-  btn.addEventListener('click', function(){
-    var q = inputEl.value.trim();
-    if(!q){ alert('請先輸入問題'); return; }
+      // 清除先前錯誤的 alert 綁定
+      inputEl.replaceWith(inputEl.cloneNode(true));
+      inputEl = document.getElementById('questionInput');
 
-    var answers = [
-      '是的。',
-      '不可能。',
-      '再想想看。',
-      '目前看起來很有機會。',
-      '時機尚未成熟。',
-      '相信你的直覺。',
-      '答案就在你心中。',
-      '你需要更多資訊。',
-      '保持耐心。',
-      '結果會超出你的預期。'
-    ];
+      // 按鈕點擊才觸發
+      btn.addEventListener('click', function(){
+        var q = inputEl.value.trim();
+        if(!q){ alert('請先輸入問題'); return; }
 
-    var r = Math.floor(Math.random() * answers.length);
+        var answers = [
+          '是的。',
+          '不可能。',
+          '再想想看。',
+          '目前看起來很有機會。',
+          '時機尚未成熟。',
+          '相信你的直覺。',
+          '答案就在你心中。',
+          '你需要更多資訊。',
+          '保持耐心。',
+          '結果會超出你的預期。'
+        ];
 
-    var card = document.getElementById('answerCard');
-    var text = document.getElementById('answerText');
+        var r = Math.floor(Math.random() * answers.length);
 
-    text.innerHTML =
-      '<strong>你的問題：</strong> ' + q +
-      '<br><br><strong>回答：</strong> ' + answers[r];
+        var card = document.getElementById('answerCard');
+        var text = document.getElementById('answerText');
+        text.innerHTML = '<strong>你的問題：</strong> ' + q + '<br><br>' + '<strong>回答：</strong> ' + answers[r];
+        card.style.display = 'block';
+        card.classList.add('show');
+      });
 
-    card.style.display = 'block';
-    card.classList.add('show');
-  });
-
-  // 再問一次
-  document.getElementById('againBtn').addEventListener('click', function(){
-    btn.click();
-  });
-
-})();
-</script>
+      // 再問一次
+      document.getElementById('againBtn').addEventListener('click', function(){
+        btn.click();
+      });('show');
+      });
+    })();
+  </script>
 </body>
 </html>
-
