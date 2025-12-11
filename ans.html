@@ -129,6 +129,9 @@
       lastQuestion = q;      // 更新記錄
     }
     if(!q){ alert('請先輸入問題'); return; }
+    if(q === lastQuestion){
+        return;
+    }
 
     var answers = [
       '是的。',
