@@ -125,7 +125,7 @@
   btn.addEventListener('click', function(){
     var q = inputEl.value.trim();
     if (q === lastQuestion && repeatCount >= maxRepeat) {
-        alert("你還沒改問題喔！而且你已經問太多次啦！");
+        alert("或許該換個問題了");
         return;
     }
     if(!q){ alert('請先輸入問題'); return; }
