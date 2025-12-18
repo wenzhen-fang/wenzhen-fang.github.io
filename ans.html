@@ -80,18 +80,6 @@
       transition:0.25s;
     }
     .answer-card.show{background:#eef2ff; border-color:#c7d2fe;}
-    .again-btn{
-      margin-top:16px;
-      padding:10px 16px;
-      background:#64748b;
-      color:white;
-      border:none;
-      border-radius:8px;
-      font-size:14px;
-      cursor:pointer;
-      transition:background .15s;
-    }
-    .again-btn:hover{background:#172436;}
     .answer-card{opacity:0; transform:translateY(10px);}
     .answer-card.show{opacity:1; transform:translateY(0);} 
     </style>
@@ -110,7 +98,6 @@
 
     <div id="answerCard" class="answer-card" style="display:none">
       <div id="answerText"></div>
-      <button id="againBtn" class="again-btn">再問一次</button>
     </div>
     </div>
   </div>
@@ -169,33 +156,13 @@
     var text = document.getElementById('answerText');
 
     text.innerHTML =
-      '<strong>你的問題：</strong> ' + q +
+      '<strong>你的問題：</strong> ' + lastQuestion +
       '<br><br><strong>回答：</strong> ' + answers[r];
 
     card.style.display = 'block';
     card.classList.add('show');
   });
 
-  // 再問一次
-  document.getElementById('againBtn').addEventListener('click', function(){
-  
-    repeatCount++;
-  
-    if(repeatCount >= maxRepeat){
-      var card = document.getElementById('answerCard');
-      var text = document.getElementById('answerText');
-  
-      text.innerHTML =
-        '<strong>答案已在你心中</strong><br><br>' +
-        '或許該換個問題了？';
-  
-      card.style.display = 'block';
-      card.classList.add('show');
-      return;
-    }
-  
-    btn.click(); // 還沒達上限 → 正常再問一次
-  });
 })();
 </script>
 </body>
