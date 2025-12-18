@@ -116,7 +116,7 @@
     var q = inputEl.value.trim();
     if(!q){ alert('請先輸入問題'); return; }
     if (q === lastQuestion && repeatCount >= maxRepeat) {
-        alert("或許該換個問題了");
+        alert("你心中已有答案，該換個問題了");
         return;
     }
     if (q === lastQuestion) {
